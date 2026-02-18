@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+:root {
+  /* 엔드필드 컬러 팔레트 - 산업적 SF 느낌 */
+  --bg-primary: #0c0e14;
+  --bg-secondary: #12151f;
+  --bg-tertiary: #1a1e2e;
+  --bg-card: #161a28;
+  --bg-hover: #1e2336;
+
+  --accent-primary: #4fd1c5;
+  --accent-secondary: #38b2ac;
+  --accent-warm: #f6ad55;
+  --accent-danger: #fc8181;
+
+  --text-primary: #e2e8f0;
+  --text-secondary: #a0aec0;
+  --text-muted: #718096;
+
+  --border-primary: #2d3748;
+  --border-accent: #4fd1c540;
+
+  --glass-bg: rgba(22, 26, 40, 0.85);
+  --glass-border: rgba(77, 209, 197, 0.15);
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-hover: var(--bg-hover);
+  --color-accent: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-warm: var(--accent-warm);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border-primary);
+  --color-border-accent: var(--border-accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-primary) var(--bg-secondary);
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 3px;
+}
+
+body {
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* 커스텀 오디오 플레이어 스타일 */
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  border: 1px solid var(--border-primary);
+}
+
+.audio-player button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.audio-player button:hover {
+  background: var(--accent-secondary);
+  transform: scale(1.05);
+}
+
+.audio-player .progress-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--bg-hover);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.audio-player .progress-bar .progress {
+  height: 100%;
+  background: var(--accent-primary);
+  border-radius: 2px;
+  transition: width 0.1s;
+}
+
+.audio-player .time {
+  font-size: 12px;
+  color: var(--text-muted);
+  min-width: 70px;
+  text-align: right;
+}
+
+/* 이미지 모달 */
+.image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: zoom-out;
+}
+
+.image-modal img {
+  max-width: 95vw;
+  max-height: 95vh;
+  object-fit: contain;
+}
+
+/* 기하학적 패턴 배경 */
+.geo-pattern {
+  background-image:
+    linear-gradient(30deg, var(--border-primary) 12%, transparent 12.5%, transparent 87%, var(--border-primary) 87.5%, var(--border-primary)),
+    linear-gradient(150deg, var(--border-primary) 12%, transparent 12.5%, transparent 87%, var(--border-primary) 87.5%, var(--border-primary)),
+    linear-gradient(30deg, var(--border-primary) 12%, transparent 12.5%, transparent 87%, var(--border-primary) 87.5%, var(--border-primary)),
+    linear-gradient(150deg, var(--border-primary) 12%, transparent 12.5%, transparent 87%, var(--border-primary) 87.5%, var(--border-primary)),
+    linear-gradient(60deg, var(--bg-tertiary) 25%, transparent 25.5%, transparent 75%, var(--bg-tertiary) 75%, var(--bg-tertiary)),
+    linear-gradient(60deg, var(--bg-tertiary) 25%, transparent 25.5%, transparent 75%, var(--bg-tertiary) 75%, var(--bg-tertiary));
+  background-size: 40px 70px;
+  background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
+}
+
+/* 글로우 효과 */
+.glow-accent {
+  box-shadow: 0 0 20px rgba(79, 209, 197, 0.15);
+}
+
+.glow-accent-hover:hover {
+  box-shadow: 0 0 30px rgba(79, 209, 197, 0.25);
+}
+
+/* 테두리 그라데이션 */
+.border-gradient {
+  position: relative;
+}
+
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--accent-primary), transparent 50%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(79, 209, 197, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(79, 209, 197, 0.4); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
