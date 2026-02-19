@@ -14,7 +14,8 @@ export const characterIcons: Record<string, string> = {
   "포그라니치니크": `${basePath}/media/icon/포그라니치니크.webp`,
   "여풍": `${basePath}/media/icon/여풍.webp`,
   "라스트라이트": `${basePath}/media/icon/라스트라이트.webp`,
-  "울프가드": `${basePath}/media/icon/울프가드.webp`
+  "울프가드": `${basePath}/media/icon/울프가드.webp`,
+  "장방이": `${basePath}/media/icon/장방이.webp`
 };
 
 // 메일 데이터
@@ -115,6 +116,12 @@ export const eventData: Record<string, EventData> = {
         image: `${basePath}/media/event/event01/image/event01_여풍.png`,
         audioKR: `${basePath}/media/event/event01/audio/event01_여풍_KR.mp3`,
         audioJP: `${basePath}/media/event/event01/audio/event01_여풍_JP.mp3`
+      },
+      {
+        name: "장방이",
+        image: `${basePath}/media/event/event01/image/event01_장방이.png`,
+        audioKR: `${basePath}/media/event/event01/audio/event01_장방이_KR.mp3`,
+        audioJP: `${basePath}/media/event/event01/audio/event01_장방이_JP.mp3`
       }
     ]
   }
