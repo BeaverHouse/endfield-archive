@@ -15,7 +15,7 @@ export default function EventPage() {
   return (
     <div className="relative">
       <div className="absolute inset-0 geo-pattern opacity-20 pointer-events-none" />
-      <div className="relative max-w-7xl mx-auto px-4 py-4 sm:py-8 animate-fade-in">
+      <div className="relative max-w-7xl mx-auto px-4 py-4 sm:py-8">
       {!selectedEvent ? (
         <>
           {/* 이벤트 목록 */}
@@ -40,34 +40,53 @@ export default function EventPage() {
                 className="group relative p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-[var(--bg-card)] border border-[var(--border-primary)] hover:border-[var(--accent-warm)] transition-all duration-300 text-left animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                {/* 캐릭터 아이콘들 */}
-                <div className="flex -space-x-2 sm:-space-x-3 mb-3 sm:mb-4">
-                  {event.characters.slice(0, 5).map((char, i) => (
-                    <div
-                      key={char.name}
-                      className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-[var(--bg-card)]"
-                      style={{ zIndex: 5 - i }}
-                    >
-                      <Image
-                        src={characterIcons[char.name] || ""}
-                        alt={char.name}
-                        fill
-                        className="object-cover"
-                      />
+                {event.type === "gallery" ? (
+                  <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-[var(--accent-primary)] to-teal-400 flex items-center justify-center">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--bg-primary)] sm:w-5 sm:h-5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                      </svg>
                     </div>
-                  ))}
-                  {event.characters.length > 5 && (
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[var(--bg-tertiary)] border-2 border-[var(--bg-card)] flex items-center justify-center text-xs text-[var(--text-muted)]">
-                      +{event.characters.length - 5}
-                    </div>
-                  )}
-                </div>
+                    <span className="text-xs sm:text-sm text-[var(--text-muted)]">
+                      {event.series
+                        ? `${event.series.name} 시즌 ${event.series.season} · `
+                        : ""}
+                      {event.images.length}장의 이미지
+                    </span>
+                  </div>
+                ) : (
+                  <div className="flex -space-x-2 sm:-space-x-3 mb-3 sm:mb-4">
+                    {event.characters.slice(0, 5).map((char, i) => (
+                      <div
+                        key={char.name}
+                        className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-[var(--bg-card)]"
+                        style={{ zIndex: 5 - i }}
+                      >
+                        <Image
+                          src={characterIcons[char.name] || ""}
+                          alt={char.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ))}
+                    {event.characters.length > 5 && (
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[var(--bg-tertiary)] border-2 border-[var(--bg-card)] flex items-center justify-center text-xs text-[var(--text-muted)]">
+                        +{event.characters.length - 5}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2 group-hover:text-[var(--accent-warm)] transition-colors">
                   {event.name}
                 </h3>
                 <p className="text-xs sm:text-sm text-[var(--text-muted)]">
-                  {event.characters.length}명의 오퍼레이터
+                  {event.type === "gallery"
+                    ? "포토 갤러리"
+                    : `${event.characters.length}명의 오퍼레이터`}
                 </p>
 
                 <div className="mt-3 sm:mt-4 flex items-center gap-2 text-xs sm:text-sm text-[var(--text-muted)] group-hover:text-[var(--accent-warm)] transition-colors">
@@ -110,35 +129,66 @@ export default function EventPage() {
                 </div>
                 <span className="text-sm sm:text-base font-semibold">이벤트 BGM</span>
               </div>
-              <AudioPlayer src={currentEvent.bgm} label="BGM" autoPlay defaultVolume={0.3} isBgm />
+              {currentEvent.bgm.type === "local" ? (
+                <AudioPlayer src={currentEvent.bgm.src} label="BGM" autoPlay defaultVolume={0.3} isBgm />
+              ) : (
+                <div className="aspect-video min-h-[200px] overflow-hidden rounded-lg">
+                  <iframe
+                    className="h-full w-full"
+                    src={`https://www.youtube.com/embed/${currentEvent.bgm.videoId}`}
+                    title={`${currentEvent.name} BGM`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+              )}
             </div>
           )}
 
-          {/* 캐릭터 그리드 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
-            {currentEvent?.characters.map((char, index) => (
-              <div
-                key={char.name}
-                className="rounded-xl sm:rounded-2xl bg-[var(--bg-card)] border border-[var(--border-primary)] overflow-hidden animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {/* 캐릭터 헤더 */}
-                <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-[var(--bg-tertiary)] border-b border-[var(--border-primary)]">
-                  <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-[var(--accent-primary)]">
-                    <Image
-                      src={characterIcons[char.name] || ""}
-                      alt={char.name}
-                      fill
-                      className="object-cover"
-                    />
+          {currentEvent?.type === "gallery" ? (
+            <div className="space-y-3 sm:space-y-4">
+              {currentEvent.images.map((src, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedImage(src)}
+                  className="relative w-full overflow-hidden rounded-lg sm:rounded-xl group animate-fade-in block"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <Image
+                    src={src}
+                    alt={`${currentEvent.name} - ${index + 1}`}
+                    width={1920}
+                    height={1080}
+                    className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300"
+                  />
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+              {currentEvent?.characters.map((char, index) => (
+                <div
+                  key={char.name}
+                  className="rounded-xl sm:rounded-2xl bg-[var(--bg-card)] border border-[var(--border-primary)] overflow-hidden animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  {/* 캐릭터 헤더 */}
+                  <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-[var(--bg-tertiary)] border-b border-[var(--border-primary)]">
+                    <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-[var(--accent-primary)]">
+                      <Image
+                        src={characterIcons[char.name] || ""}
+                        alt={char.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <span className="text-base sm:text-lg font-bold">{char.name}</span>
                   </div>
-                  <span className="text-base sm:text-lg font-bold">{char.name}</span>
-                </div>
 
-                {/* 캐릭터 이미지 */}
-                {char.image && (
+                  {/* 캐릭터 이미지 */}
                   <button
-                    onClick={() => setSelectedImage(char.image!)}
+                    onClick={() => setSelectedImage(char.image)}
                     className="relative w-full aspect-[4/3] overflow-hidden group"
                   >
                     <Image
@@ -158,20 +208,16 @@ export default function EventPage() {
                       </div>
                     </div>
                   </button>
-                )}
 
-                {/* 오디오 플레이어 */}
-                <div className="p-3 sm:p-4 space-y-2 sm:space-y-3">
-                  {char.audioKR && (
+                  {/* 오디오 플레이어 */}
+                  <div className="p-3 sm:p-4 space-y-2 sm:space-y-3">
                     <AudioPlayer src={char.audioKR} label="한국어" />
-                  )}
-                  {char.audioJP && (
                     <AudioPlayer src={char.audioJP} label="日本語" />
-                  )}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </>
       )}
 

@@ -30,7 +30,7 @@ export default function RootLayout({
         <div
           className="fixed inset-0 -z-10"
           style={{
-            backgroundImage: "url('/background.png')",
+            backgroundImage: `url('${process.env.NEXT_PUBLIC_BASE_PATH || ""}/background.png')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: 0.3,

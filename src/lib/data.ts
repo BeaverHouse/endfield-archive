@@ -1,17 +1,23 @@
+// basePath for GitHub Pages
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const mediaPath = (path: string) => `${basePath}/media/${path}`;
+
 // 캐릭터 아이콘 매핑
 export const characterIcons: Record<string, string> = {
-  "진천우": "/media/icon/진천우.webp",
-  "아델리아": "/media/icon/아델리아.webp",
-  "펠리카": "/media/icon/펠리카.webp",
-  "판": "/media/icon/판.webp",
-  "엠버": "/media/icon/엠버.webp",
-  "레바테인": "/media/icon/레바테인.webp",
-  "질베르타": "/media/icon/질베르타.webp",
-  "이본": "/media/icon/이본.webp",
-  "포그라니치니크": "/media/icon/포그라니치니크.webp",
-  "여풍": "/media/icon/여풍.webp",
-  "라스트라이트": "/media/icon/라스트라이트.webp",
-  "울프가드": "/media/icon/울프가드.webp"
+  "진천우": mediaPath("icon/진천우.webp"),
+  "아델리아": mediaPath("icon/아델리아.webp"),
+  "펠리카": mediaPath("icon/펠리카.webp"),
+  "판": mediaPath("icon/판.webp"),
+  "엠버": mediaPath("icon/엠버.webp"),
+  "레바테인": mediaPath("icon/레바테인.webp"),
+  "질베르타": mediaPath("icon/질베르타.webp"),
+  "이본": mediaPath("icon/이본.webp"),
+  "포그라니치니크": mediaPath("icon/포그라니치니크.webp"),
+  "여풍": mediaPath("icon/여풍.webp"),
+  "라스트라이트": mediaPath("icon/라스트라이트.webp"),
+  "울프가드": mediaPath("icon/울프가드.webp"),
+  "장방이": mediaPath("icon/장방이.webp"),
+  "로시": mediaPath("icon/로시.webp")
 };
 
 // 메일 데이터
@@ -33,7 +39,7 @@ export const mailData: Mail[] = [
 아무튼, 이것만은 꼭 기억해 줘. 엔드필드 감독관으로서 나도 관리자의 짐을 나눠 짊어질 준비가 되어 있다는 걸 말이야!
 앞으로도 너무 서두르지 말고 관리자의 속도에 맞춰서 해나갔으면 좋겠어. 내가 준비한 보급품이 조금이나마 힘이 되길 바랄게.
 우리를 더 높은 곳으로 이끌어 줘, 관리자.`,
-    file: "/media/mail/260207_펠리카.png"
+    file: mediaPath("mail/260207_펠리카.png")
   },
   {
     date: "260216",
@@ -43,7 +49,7 @@ export const mailData: Mail[] = [
 시간이 참 빠르네. 얼마 전까지만 해도 가방에 떨어지는 낙엽을 바라봤던 것 같은데, 눈 깜짝할 사이에 봄이 찾아왔어. 따뜻한 봄처럼 조금 더 즐거운 하루가 이어지길 바랄게. 그리고... 우리한테도 더 많이 의지해 줘. 우리 모두 네 곁에 있으니까.
 이번 봄은 어디로 휴가를 갈지 정했어? 난 아직 트리글라바랑 라반도르마 중에 고민하고 있거든. 둘 다 불꽃놀이가 되게 예뻐서 말이야. 음... 근데 갑자기 생각난 건데, 제강호에 있으면 저 두 곳의 불꽃놀이를 다 볼 수 있지 않을까? 헤헤... 농담이야.
 아, 그리고 밤꽃꿀이랑 절인 꽃잎을 조금 넣은 디저트를 준비했어. 내가 편지를 전달하러 다니면서 샀던 기념품들이야. 섞어 먹으니까 맛있었거든! 네가 좋아했으면 좋겠어!`,
-    file: "/media/mail/260216_질베르타.png"
+    file: mediaPath("mail/260216_질베르타.png")
   },
   {
     date: "260217",
@@ -53,67 +59,113 @@ export const mailData: Mail[] = [
 식당을 지나가는데 직원이 불러 세우더니, 이 디저트에 어떤 재료를 넣을지 꼭 대답해 줘야 한다고 하더라고. 난 별생각 없이 옆에 놓인 무한 제공 아이스크림 냉장고를 가리켰지. 내가 준비한 이 디저트가 차갑고도 달콤한 이유야. 하지만... 난 네가 이걸 좋아할 거라고 생각해.
 이걸 다 먹고 만약 겨울이 생각난다면, 내가 너한테 했던 말을 떠올려 봐. '언젠가 너도 끝없는 겨울 속에서 불꽃이 필요해진다면... 그때 날 찾아와.'
 불꽃이 항상 함께하는 것처럼 따뜻한 봄날이 되길 바랄게.`,
-    file: "/media/mail/260217_레바테인.png"
+    file: mediaPath("mail/260217_레바테인.png")
+  },
+  {
+    date: "260221",
+    character: "이본",
+    title: "이본의 인사",
+    content: `관리자, 봄이 왔어!
+이 메시지를 받았다는 건, 삐삐한테 설치한 신형 스마트 알림 모듈이 제대로 설치됐다는 거겠지? 구형 모듈은 탈로스가 한번 공전할 때마다 나한테 알림을 주는 게 다였는데, 이젠 3대 진영의 휴일이랑 의미 있는 날들 모두 빠짐없이 체크할 수 있게 됐어!
+그러니까! 지금처럼 너한테 시간 딱 맞춰서 메일을 보낼 수 있는 거고! 네가 하는 모든 연구가 순조롭고, 언제나 즐거운 하루가 되길 바랄게!
+우리 아직 해야 할 일이 엄청 많은 거 알지? 사이몬크에 가서 산책도 해야 하고, 라반도르마의 해변으로 놀러도 가야 하고, 새로운 음반 구매랑 새로운 초자연 공식 연구랑... 음음! 어쨌든, 우리들의 모든 일은 다 순조롭게 흘러갈 테니까 전혀 걱정하지 마! 행복한 봄날을 만끽하길 바랄게!`,
+    file: mediaPath("mail/260221_이본.png")
+  },
+  {
+    date: "260224",
+    character: "진천우",
+    title: "진천우의 메시지",
+    content: `관리자에게,
+엔드필드에서의 생활은 좀 적응됐어? 일이 너무 따분할 땐 언제든 나를 찾아와줘, 내가 같이 나가서 놀아줄게! 4번 협곡이 겉보기엔 온통 숲뿐인 것 같아도, 여기서 겪은 모험담을 다 풀자면 며칠로도 모자를 정도로 정말 많거든! 나중에 내 고향인 홍산도 꼭 같이 가보자. 거기도 너랑 같이 보고 싶은 예쁜 풍경이나 신기한 일들이 정말 많아!
+하지만 넌 아직 건강을 회복하는 게 우선이니까 너무 무리하지 말고 천천히 시작하자. 보급품을 좀 챙겨왔으니까 설명서 보고 잘 챙겨 먹어. 일도 쉬엄쉬엄해야 하는 거 알지?
+서두르지 않아도 괜찮아, 난 언제나 여기서 기다리고 있을게!`,
+    file: mediaPath("mail/260224_진천우.png")
+  },
+  {
+    date: "260401",
+    character: "로시",
+    title: "로시의 메시지",
+    content: `관리자님, 플루라이트 언니가 저한테 이상한 선물 상자를 줬어요! 무슨 잭 인 더 박스라는 장난감인데, 상자를 열자마자 스프링이 달린 원석충이 갑자기 튀어나오는 거 있죠?! 저도 모르게 너무 놀라서 상자를 산산조각 낼 뻔했다니까요... 처음엔 제가 귀한 걸 망가뜨릴 뻔했나 싶어서 사과하려고 했는데, 언니가 괜찮다면서 다른 사람한테 전해주라고 하더라고요... 그리고 간식이랑 다른 선물도 잔뜩 줬어요!
+관리자님한테 꼭 필요해 보이는 것들이 좀 있길래 제가 특별히 챙겨왔죠! 아, 이 상자요? 이건 너무 무서우니까... 헤헤, 방금 카텔로가 제강호에 있는 걸 봤거든요. 이번엔 제가 깜짝 놀라게 해 줄 차례예요!`,
+    file: mediaPath("mail/260401_로시.png")
   }
 ];
 
 // 이벤트 캐릭터
 export interface EventCharacter {
   name: string;
-  image?: string;
-  audioKR?: string;
-  audioJP?: string;
+  image: string;
+  audioKR: string;
+  audioJP: string;
 }
 
 // 이벤트 데이터
-export interface EventData {
+interface EventBase {
   name: string;
-  bgm: string;
+  bgm?:
+    | { type: "local"; src: string }
+    | { type: "youtube"; videoId: string };
+  series?: { name: string; season: number };
+}
+
+interface CharacterEvent extends EventBase {
+  type: "character";
   characters: EventCharacter[];
 }
 
+interface GalleryEvent extends EventBase {
+  type: "gallery";
+  images: string[];
+}
+
+export type EventData = CharacterEvent | GalleryEvent;
+
+const eventPath = (eventId: string, path: string) =>
+  mediaPath(`event/${eventId}/${path}`);
+
+const galleryImages = (eventId: string, count: number) =>
+  Array.from({ length: count }, (_, index) =>
+    eventPath(eventId, `images/${String(index + 1).padStart(2, "0")}.png`)
+  );
+
+const eventCharacter = (eventId: string, name: string): EventCharacter => ({
+  name,
+  image: eventPath(eventId, `images/${name}.png`),
+  audioKR: eventPath(eventId, `audio/${name}.ko.mp3`),
+  audioJP: eventPath(eventId, `audio/${name}.ja.mp3`)
+});
+
 export const eventData: Record<string, EventData> = {
-  "event01": {
+  event01: {
     name: "따뜻한 봄의 인사",
-    bgm: "/media/event/event01/event01_bgm.mp3",
-    characters: [
-      {
-        name: "펠리카",
-        image: "/media/event/event01/image/event01_펠리카.png",
-        audioKR: "/media/event/event01/audio/event01_펠리카_KR.mp3",
-        audioJP: "/media/event/event01/audio/event01_펠리카_JP.mp3"
-      },
-      {
-        name: "아델리아",
-        image: "/media/event/event01/image/event01_아델리아.png",
-        audioKR: "/media/event/event01/audio/event01_아델리아_KR.mp3",
-        audioJP: "/media/event/event01/audio/event01_아델리아_JP.mp3"
-      },
-      {
-        name: "판",
-        image: "/media/event/event01/image/event01_판.png",
-        audioKR: "/media/event/event01/audio/event01_판_KR.mp3",
-        audioJP: "/media/event/event01/audio/event01_판_JP.mp3"
-      },
-      {
-        name: "질베르타",
-        image: "/media/event/event01/image/event01_질베르타.png",
-        audioKR: "/media/event/event01/audio/event01_질베르타_KR.mp3",
-        audioJP: "/media/event/event01/audio/event01_질베르타_JP.mp3"
-      },
-      {
-        name: "진천우",
-        image: "/media/event/event01/image/event01_진천우.png",
-        audioKR: "/media/event/event01/audio/event01_진천우_KR.mp3",
-        audioJP: "/media/event/event01/audio/event01_진천우_JP.mp3"
-      },
-      {
-        name: "여풍",
-        image: "/media/event/event01/image/event01_여풍.png",
-        audioKR: "/media/event/event01/audio/event01_여풍_KR.mp3",
-        audioJP: "/media/event/event01/audio/event01_여풍_JP.mp3"
-      }
-    ]
+    type: "character",
+    bgm: { type: "local", src: eventPath("event01", "bgm.mp3") },
+    characters: ["펠리카", "아델리아", "판", "질베르타", "진천우", "여풍", "장방이"].map(
+      (name) => eventCharacter("event01", name)
+    )
+  },
+  event02: {
+    name: "큰 귀 토끼의 여정 (만우절 이벤트)",
+    type: "gallery",
+    bgm: { type: "local", src: eventPath("event02", "bgm.mp3") },
+    images: galleryImages("event02", 21)
+  },
+  event03: {
+    name: "우주에 새겨진 우리의 꿈",
+    type: "gallery",
+    images: galleryImages("event03", 3)
+  },
+  event04: {
+    name: "함께하는 기쁨",
+    type: "gallery",
+    images: galleryImages("event04", 3)
+  },
+  contract1: {
+    name: "위기협약 - 재점화 실험 작전",
+    type: "gallery",
+    bgm: { type: "youtube", videoId: "sqS0fMeoMJQ" },
+    series: { name: "위기협약", season: 1 },
+    images: galleryImages("contract1", 4)
   }
 };
 

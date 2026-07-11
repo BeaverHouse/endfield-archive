@@ -13,7 +13,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[var(--bg-tertiary)] border border-[var(--border-accent)] mb-4 sm:mb-6">
             <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse" />
             <span className="text-xs sm:text-sm text-[var(--text-secondary)]">
-              Last Updated 26.02.18
+              Last Updated 26.07.11
             </span>
           </div>
 
@@ -24,7 +24,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           </h1>
 
           <p className="text-base sm:text-lg text-[var(--text-secondary)] mb-8 sm:mb-10 max-w-2xl mx-auto px-2">
-            지나간 오퍼레이터의 편지와 특별한 순간들을 둘러보세요
+            지나간 오퍼레이터의 편지와 특별한 순간들
           </p>
         </div>
       </section>
@@ -61,7 +61,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               우편함
             </h3>
             <p className="text-sm sm:text-base text-[var(--text-secondary)]">
-              오퍼레이터들에게 받은 특별한 편지들
+              오퍼레이터들이 보낸 편지들
             </p>
 
             <div className="mt-4 sm:mt-6 flex items-center gap-2 text-xs sm:text-sm text-[var(--text-muted)] group-hover:text-[var(--accent-primary)] transition-colors">
