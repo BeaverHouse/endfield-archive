@@ -29,7 +29,7 @@ export default function MailPage() {
         {/* 페이지 헤더 - 모바일에서 상세 보기 시 숨김 */}
         <div className={`mb-4 sm:mb-6 flex items-center justify-between ${selectedMailIndex !== null ? "hidden lg:flex" : ""}`}>
           <div className="flex items-center gap-2 sm:gap-3">
-            <span className="text-[var(--text-muted)]">//</span>
+            <span className="text-[var(--text-muted)]">{"//"}</span>
             <h1 className="text-xl sm:text-2xl font-bold">메일함</h1>
           </div>
           <span className="text-xs sm:text-sm text-[var(--text-muted)]">{sortedMail.length}/200</span>
