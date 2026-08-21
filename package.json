@@ -2,6 +2,7 @@
   "name": "endfield-archive-next",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@11.22.0",
   "scripts": {
     "dev": "next dev -p 3004",
     "build": "next build",
