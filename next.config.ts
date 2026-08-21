@@ -4,6 +4,8 @@ const isProd = process.env.NODE_ENV === "production";
 const basePath = isProd ? "/endfield-archive" : "";
 
 const nextConfig: NextConfig = {
+  // Stops next dev writing AGENTS.md and CLAUDE.md into the repo root.
+  agentRules: false,
   output: "export",
   trailingSlash: true,
   basePath,
